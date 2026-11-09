@@ -1,0 +1,277 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --forest: #11281a;
+  --ivory: #f7f4ea;
+  --sage: #9aab88;
+  --clay: #b4623f;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ivory font-sans text-ink antialiased;
+    font-feature-settings: 'ss01' 1;
+  }
+
+  ::selection {
+    background: #b9cfbb;
+    color: #0a1a10;
+  }
+
+  :focus-visible {
+    outline: 2px solid #2c5738;
+    outline-offset: 3px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    font-variation-settings: 'SOFT' 0, 'WONK' 0;
+    letter-spacing: -0.015em;
+  }
+
+  /* Kannada text needs a font with proper glyph coverage. */
+  html[lang='kn'] body,
+  .lang-kn {
+    font-family: 'Noto Sans Kannada', 'Inter', sans-serif;
+  }
+  html[lang='kn'] h1,
+  html[lang='kn'] h2,
+  html[lang='kn'] h3,
+  html[lang='kn'] h4 {
+    font-family: 'Noto Sans Kannada', 'Fraunces', serif;
+    letter-spacing: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-[1180px] px-5 sm:px-8;
+  }
+
+  .wrap-narrow {
+    @apply mx-auto w-full max-w-[760px] px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-forest-600;
+  }
+
+  .eyebrow-light {
+    @apply inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-sage-200;
+  }
+
+  .display-xl {
+    @apply font-display text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.4rem];
+  }
+
+  .display-lg {
+    @apply font-display text-[2rem] leading-[1.1] sm:text-4xl lg:text-[3.2rem];
+  }
+
+  .rule {
+    @apply h-px w-full bg-forest-900/10;
+  }
+
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold tracking-[0.01em] transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50;
+    min-height: 44px;
+  }
+
+  .btn:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  .btn-primary {
+    @apply btn bg-forest-900 text-ivory hover:bg-forest-700 hover:shadow-lift;
+  }
+
+  .btn-outline {
+    @apply btn border border-forest-900/25 bg-transparent text-forest-900 hover:border-forest-900 hover:bg-forest-900/5;
+  }
+
+  .btn-light {
+    @apply btn bg-ivory text-forest-900 hover:bg-white;
+  }
+
+  .btn-ghost {
+    @apply btn px-4 text-forest-800 hover:bg-forest-900/[0.06];
+  }
+
+  .btn-danger {
+    @apply btn bg-clay-600 text-white hover:bg-clay-500;
+  }
+
+  .btn-sm {
+    @apply px-4 py-2 text-[13px];
+    min-height: 36px;
+  }
+
+  .field {
+    @apply space-y-1.5;
+  }
+
+  .field-label {
+    @apply flex items-center justify-between gap-2 text-[13px] font-semibold text-forest-900;
+  }
+
+  .field-hint {
+    @apply text-xs leading-relaxed text-muted;
+  }
+
+  .field-input {
+    @apply w-full rounded-xl border border-forest-900/20 bg-paper px-4 py-3 text-[15px] text-ink placeholder:text-muted/60 transition-colors duration-150;
+    min-height: 48px;
+  }
+
+  .field-input:hover {
+    @apply border-forest-900/35;
+  }
+
+  .field-input:focus {
+    @apply border-forest-700 ring-2 ring-forest-700/15 outline-none;
+  }
+
+  .field-input[aria-invalid='true'] {
+    @apply border-clay-500 ring-2 ring-clay-500/10;
+  }
+
+  .field-error {
+    @apply flex items-start gap-1.5 text-xs font-medium text-clay-600;
+  }
+
+  .card {
+    @apply rounded-2xl border border-forest-900/10 bg-paper;
+  }
+
+  .card-pad {
+    @apply card p-5 sm:p-7;
+  }
+
+  .panel-dark {
+    @apply rounded-2xl bg-forest-900 text-ivory;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold tracking-wide;
+  }
+
+  .badge-sage {
+    @apply badge bg-sage-100 text-forest-700;
+  }
+
+  .badge-clay {
+    @apply badge bg-clay-500/10 text-clay-600;
+  }
+
+  .badge-forest {
+    @apply badge bg-forest-900 text-ivory;
+  }
+
+  .badge-ochre {
+    @apply badge bg-ochre/15 text-[#7a5716];
+  }
+
+  .nav-link {
+    @apply relative text-[14px] font-medium text-forest-900/75 transition-colors hover:text-forest-900;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-1.5 left-0 h-px w-0 bg-forest-900 transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .table-editorial {
+    @apply w-full border-collapse text-left text-sm;
+  }
+
+  .table-editorial thead th {
+    @apply border-b border-forest-900/15 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-forest-600;
+  }
+
+  .table-editorial tbody td {
+    @apply border-b border-forest-900/[0.07] px-4 py-3.5 align-middle;
+  }
+
+  .table-editorial tbody tr {
+    @apply transition-colors hover:bg-sage-50;
+  }
+
+  .link-underline {
+    @apply font-semibold text-forest-800 underline decoration-forest-800/30 decoration-1 underline-offset-4 transition hover:decoration-forest-800;
+  }
+
+  .reveal {
+    animation: rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .reveal-2 {
+    animation-delay: 0.08s;
+  }
+  .reveal-3 {
+    animation-delay: 0.16s;
+  }
+  .reveal-4 {
+    animation-delay: 0.24s;
+  }
+
+  .grain {
+    position: relative;
+  }
+
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+  }
+
+  .skip-link {
+    @apply absolute left-4 top-4 z-[100] -translate-y-24 rounded-lg bg-forest-900 px-4 py-2 text-sm text-ivory transition-transform focus:translate-y-0;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

@@ -1,0 +1,68 @@
+rules_version = '2';
+
+// KrishiConnect Firestore security rules.
+// Private farm profiles and reports are readable and writable only by their owner.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function validProfile(data) {
+      return data.uid == request.auth.uid
+        && data.fullName is string && data.fullName.size() >= 2 && data.fullName.size() <= 60
+        && data.district is string && data.district.size() >= 1 && data.district.size() <= 40
+        && data.taluk is string && data.taluk.size() >= 1 && data.taluk.size() <= 60
+        && data.language in ['en', 'kn']
+        && data.farmArea is number && data.farmArea >= 0.1 && data.farmArea <= 1000
+        && data.irrigation is string && data.irrigation.size() >= 1 && data.irrigation.size() <= 80
+        && data.primaryCrops is list && data.primaryCrops.size() >= 1 && data.primaryCrops.size() <= 5
+        && data.village is string && data.village.size() <= 80
+        && data.email is string && data.email.size() <= 254
+        && data.updatedAt is timestamp
+        && (!('createdAt' in data.keys()) || data.createdAt is timestamp)
+        && data.keys().hasOnly([
+          'uid', 'email', 'fullName', 'village', 'district', 'taluk',
+          'language', 'farmArea', 'irrigation', 'primaryCrops',
+          'createdAt', 'updatedAt'
+        ]);
+    }
+
+    function validReport(data) {
+      return data.name is string && data.name.size() >= 1 && data.name.size() <= 80
+        && data.type in ['profit', 'fertilizer']
+        && data.crop is string && data.crop.size() <= 80
+        && data.inputs is map
+        && data.result is map
+        && data.createdAt is timestamp
+        && data.createdAt == request.time
+        && data.updatedAt is timestamp
+        && data.keys().hasOnly([
+          'name', 'type', 'crop', 'cropId', 'inputs', 'result',
+          'createdAt', 'updatedAt'
+        ]);
+    }
+
+    match /farmers/{uid} {
+      allow get, list: if isOwner(uid);
+      allow create, update: if isOwner(uid) && validProfile(request.resource.data);
+      allow delete: if false;
+
+      match /reports/{reportId} {
+        allow read, delete: if isOwner(uid);
+        allow create: if isOwner(uid) && validReport(request.resource.data);
+        allow update: if false;
+      }
+    }
+
+    // No other collections are exposed to the client.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
