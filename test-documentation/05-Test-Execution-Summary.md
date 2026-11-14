@@ -166,7 +166,6 @@ The cause was the Edge process exiting mid-class, not an application or assertio
 | Artefact | Path | What it proves |
 |---|---|---|
 | Full-suite Maven log | `target/full-suite.log` | 291/0/0/0, `BUILD SUCCESS`, 06:01 min |
-| Per-class HTML reports | `target/surefire-reports/*.html` | one page per class with each case |
 | Per-class text reports | `target/surefire-reports/*.txt` | summary line per class |
 | XML reports | `target/surefire-reports/TEST-*.xml` | machine-readable results, timestamps |
 | BVA log | `target/bva-final.log` | 139 BVA executions |
@@ -177,9 +176,9 @@ The cause was the Edge process exiting mid-class, not an application or assertio
 | ECP/BVA case tables | `test-documentation/02-ECP-TestCases.md`, `03-BVA-TestCases.md` | the ID → input → expected → actual → verdict mapping |
 | White-box analysis | `test-documentation/04-CFG-and-Complexity.md` | complexity figures, CFGs, basis paths, decision coverage |
 
-The Surefire XML files carry the execution timestamps, so the run can be tied to 14 November 2026 without relying on this document.
+The Surefire XML files carry the execution timestamps, so the run can be tied to 14 November 2026 without relying on this document. No HTML Surefire report was generated for this run; the text and XML files are the original artefacts written by Maven.
 
-One stale file exists: `target/surefire-reports/com.krishiconnect.qa.tests.ecp.DebugProfileTest.txt` (1 test) is left over from an earlier interactive debug session. `DebugProfileTest` is not in `src/test/java` and is **not** part of the 291. It should be deleted before the evidence folder is archived.
+One stale file exists: `target/surefire-reports/com.krishiconnect.qa.tests.ecp.DebugProfileTest.txt` (1 test) is left over from an earlier interactive debug session. `DebugProfileTest` is not in `src/test/java` and is **not** part of the 291; it is excluded from the archived evidence folder.
 
 ---
 
