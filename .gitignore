@@ -1,1 +1,38 @@
-ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+# Operating system
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node / Vite
+node_modules/
+node_modules.corrupt-backup/
+dist/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Java / Maven
+target/
+*.class
+hs_err_pid*.log
+replay_pid*.log
+
+# Local toolchain (JDK/Maven installed outside the repo)
+.tools/
+
+# Editors
+.vscode/
+.idea/
+*.iml
+
+# Environment and Firebase project files
+.env
+.env.local
+.env.*.local
+.firebaserc
+
+# Local test output
+test-output/
+screenshots/

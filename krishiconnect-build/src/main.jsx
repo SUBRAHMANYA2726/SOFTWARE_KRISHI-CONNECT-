@@ -8,6 +8,11 @@ import { ToastProvider } from './context/ToastContext'
 import { ScrollToTop } from './hooks/usePage'
 import './styles/index.css'
 
+// Development-only hook used by the Selenium white-box tests.
+if (import.meta.env.DEV) {
+  import('./dev/testBridge').then(({ installTestBridge }) => installTestBridge())
+}
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
