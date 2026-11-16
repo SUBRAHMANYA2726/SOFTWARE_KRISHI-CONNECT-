@@ -172,7 +172,7 @@ The cause was the Edge process exiting mid-class, not an application or assertio
 | ECP log | `target/ecp-final.log` | 92 ECP executions |
 | White-box log | `target/wb-final.log` | 55 white-box executions, 53.64 s |
 | Profile re-run | `target/bva-profile-rerun.log` | evidence that the flaky class passes alone |
-| Failure screenshots | `target/screenshots/` | written by `ScreenshotHandler` on failure; empty on the green run |
+| Failure screenshots | `target/evidence/` | written by `ScreenshotHandler` on failure; empty on the green run |
 | ECP/BVA case tables | `test-documentation/02-ECP-TestCases.md`, `03-BVA-TestCases.md` | the ID → input → expected → actual → verdict mapping |
 | White-box analysis | `test-documentation/04-CFG-and-Complexity.md` | complexity figures, CFGs, basis paths, decision coverage |
 
