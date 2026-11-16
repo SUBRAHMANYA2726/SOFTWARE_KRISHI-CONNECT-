@@ -35,14 +35,14 @@ adds the Java 21 / Selenium 4 / JUnit 5 test suite and the supporting QA documen
 
 ## Overview
 
-A farmer planning a season needs four questions answered in one place:
+A farmer planning a season needs four answers in one place:
 
-1. **What is the crop fetching today?** Filter mandi prices by crop, district and market.
-2. **Will the season be profitable?** Calculate profit, loss, margin and break-even price from
-   land area, yield, selling price and cultivation cost.
-3. **How much fertilizer is required?** Convert a per-hectare NPK recommendation into quantities
-   of DAP, urea and MOP for the entered land area.
-4. **Where are the records?** Keep a farmer profile and saved reports, in English or Kannada.
+1. **Today's mandi prices.** Filter prices by crop, district and market.
+2. **Season profitability.** Calculate profit, loss, margin and break-even price from land area,
+   yield, selling price and cultivation cost.
+3. **Fertilizer quantities.** Convert a per-hectare NPK recommendation into quantities of DAP,
+   urea and MOP for the entered land area.
+4. **Farmer records.** Keep a farmer profile and saved reports, in English or Kannada.
 
 The application can run without a backend. When Firebase is not configured, it starts in a
 clearly labelled demo mode backed by browser `localStorage`. This keeps demonstrations and
